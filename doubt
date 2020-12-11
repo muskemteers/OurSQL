@@ -2,3 +2,9 @@ dashboard opacity 0.6
 background image 2 type
 db restriction 5 db, 5 table per db
 private to public organization github
+
+$('#auto-select-all').click(function() {
+        document.getElementById("query-text").innerText = "SELECT * FROM tablename;";
+        console.log("changed innertext");
+        checkQueryText();
+    });
