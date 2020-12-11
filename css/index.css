@@ -1,0 +1,45 @@
+body {
+    background-color: #121720;
+}
+
+.body-container {
+    display: flex;
+}
+
+#dashboard {
+    background-image: linear-gradient(#1d2c42, #2f476a);
+    /* background-image: linear-gradient(#4d4d4d, #1a1a1a); */
+    color: #ffff00;
+    margin: 10px 5px;
+    border-radius: 20px;
+    width: 20%;
+    height: 95vh;
+    padding: 5px 10px;
+}
+
+.tables {
+    padding: 5px;
+    text-align: center;
+}
+
+.dash-bottom1 {
+    position: absolute;
+    bottom: 55px;
+}
+
+.dash-bottom2 {
+    position: absolute;
+    bottom: 30px;
+}
+
+#query-n-result {
+    color: #ffff00;
+    margin: 0px 5px;
+    width: 50%;
+    height: 97vh;
+    padding: 0px 10px;
+}
+
+#prev-n-saved {
+    width: 30%;
+}

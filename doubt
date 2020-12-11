@@ -1,0 +1,4 @@
+dashboard opacity 0.6
+background image 2 type
+db restriction 5 db, 5 table per db
+private to public organization github
