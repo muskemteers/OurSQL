@@ -23,11 +23,6 @@
             <h4 style="margin-top: 0px;">Databases</h4>
             <div class="ui-accordion yellow-text black" id="accordion">
                 <h5 class="ui-accordion-header databases yellow-text black">sample_db1</h5>
-                <!-- <div class="ui-accordion-content yellow-text black">
-                    <p class="tables">relation_11</p>
-                    <p class="tables">relation_12</p>
-                    <p class="tables">relation_13</p>
-                </div> -->
                 <div class="ui-accordion-content yellow-text black">
                     <p class="tables">tab1</p>
                     <p class="tables">tab2</p>
@@ -68,20 +63,82 @@
                     <p class="tables">tab5</p>
                 </div>
             </div>
-            <h6 class="dash-bottom1">Watch the Github Repo <a href="#">here</a></h6>
+            <h6 class="dash-bottom1">Watch the Github Repo <a href="https://github.com/muskemteers/OurSQL" target="_blank">here</a></h6>
             <h6 class="dash-bottom2">&amp; Developers <a href="#">here</a></h6>
         </div>
         <div id="query-n-result">
-            <h4>Your queries</h4>
+            <h4 style="text-align: center; margin: 10px 0px;">Your SQL Query</h4>
+            <textarea id="query-text"></textarea>
+            <div class="container" id="query-error"><span class="red-text">Response to your Query: </span></div>
+            <div class="flex-auto-queries">
+                <button class="sub-auto-queries" id="auto-select-all">SELECT <strong>*</strong></button>
+                <button class="sub-auto-queries pulse" id="auto-select">SELECT</button>
+                <button class="sub-auto-queries pulse" id="auto-insert">INSERT</button>
+                <button class="sub-auto-queries pulse" id="auto-delete">DELETE</button>
+                <button class="sub-auto-queries pulse" id="auto-update">UPDATE</button>
+                <button class="sub-auto-queries pulse" id="auto-clear">Clear Query</button>
+                <button class="sub-auto-queries pulse" id="auto-save">Save Query</button>
+            </div>
+            <div><button class="pulse" id="execute-button"><strong>Execute SQL</strong></button></div>
+            <h4 style="text-align: center; margin: 5px 0px;">Results/Responses </h4>
+            <div id="result-response">
+                <p>Hello ji</p>
+                <p>Hello ji</p>
+            </div>
         </div>
         <div id="prev-n-saved">
-            <h4>asg</h4>
+            <div id="saved-queries">
+                <h4 class="right-align" style="padding: 0px; margin: 0px;">Saved Queries</h4>
+                <hr>
+                <div id="saved-query-div">
+                    <ol>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                    </ol>
+                </div>
+            </div>
+            <div id="history-queries">
+                <h4 class="right-align" style="padding: 0px; margin: 0px;">Previous Queries</h4>
+                <hr>
+                <div id="history-query-div">
+                    <ol>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOUSELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                        <li>SELECT * FROM YOU;</li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
-<script src="js/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js " integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin=" anonymous "></script>
+<script src="jquery-ui-1.12.1/jquery-ui.js "></script>
+<script src="js/index.js "></script>
 
 </html>
