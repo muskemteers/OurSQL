@@ -71,7 +71,7 @@
             <textarea id="query-text"></textarea>
             <div class="container" id="query-error"><span class="red-text">Response to your Query: </span></div>
             <div class="flex-auto-queries">
-                <button class="sub-auto-queries" id="auto-select-all">SELECT <strong>*</strong></button>
+                <button class="sub-auto-queries pulse" id="auto-select-all">SELECT <strong>*</strong></button>
                 <button class="sub-auto-queries pulse" id="auto-select">SELECT</button>
                 <button class="sub-auto-queries pulse" id="auto-insert">INSERT</button>
                 <button class="sub-auto-queries pulse" id="auto-delete">DELETE</button>
@@ -79,7 +79,7 @@
                 <button class="sub-auto-queries pulse" id="auto-clear">Clear Query</button>
                 <button class="sub-auto-queries pulse" id="auto-save">Save Query</button>
             </div>
-            <div><button class="pulse" id="execute-button"><strong>Execute SQL</strong></button></div>
+            <div><button id="execute-button"><strong>Execute SQL</strong></button></div>
             <h4 style="text-align: center; margin: 5px 0px;">Results/Responses </h4>
             <div id="result-response">
                 <p>Hello ji</p>
@@ -114,18 +114,7 @@
                 <h4 class="right-align" style="padding: 0px; margin: 0px;">Previous Queries</h4>
                 <hr>
                 <div id="history-query-div">
-                    <ol id="history-ol">
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <li>SELECT * FROM YOU;</li>
-                        <!-- <li>SELECT * FROM YOU;</li> -->
-                    </ol>
+                    <ol id="history-ol"></ol>
                 </div>
             </div>
         </div>
@@ -133,7 +122,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js " integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin=" anonymous "></script>
-<script src="jquery-ui-1.12.1/jquery-ui.js "></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 <script src="js/index.js "></script>
 
 </html>
