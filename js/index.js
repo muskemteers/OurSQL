@@ -29,4 +29,23 @@ $(document).ready(function() {
     }
     $('#query-text').on('input', checkQueryText);
 
+    $("#execute-button").click(history);
+
+    function history() {
+        if ($("#query-text").val() != "") {
+            var text = $("#query-text").val();
+            // if (length < 10) {
+            $("#history-ol").prepend(`<li>${text}</li>`);
+            // }
+            var length = $("#history-ol").children().length;
+            if (length > 10) {
+                $('#history-ol li:last-child').remove();
+            }
+        }
+    }
+
+    $("#auto-clear").click(function() {
+        $("#query-text").val("");
+    });
+
 });
