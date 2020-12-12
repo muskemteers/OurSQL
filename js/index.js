@@ -7,7 +7,7 @@ $(document).ready(function() {
         icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
     });
     $('.tables').click(function() {
-        console.log($(this)[0].innerHTML);
+        console.log($(this)[0].innerText);
     });
     $('.databases').click(function() {
         console.log($(this)[0].innerText);
