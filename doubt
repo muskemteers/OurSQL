@@ -9,4 +9,3 @@ $('#auto-select-all').click(function() {
         checkQueryText();
     });
 
-Bansi ke Bandua Bimansu
