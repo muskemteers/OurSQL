@@ -14,8 +14,8 @@ $(document).ready(function() {
     });
 
     function checkQueryText() {
+        //Do validation and print answer in result tab
         const inpQuery = document.getElementById("query-text");
-        console.log(inpQuery.value);
         reg = /SELECT/i;
         if (reg.test(inpQuery.value)) {
             inpQuery.style.color = "lightgreen";
@@ -29,18 +29,23 @@ $(document).ready(function() {
     }
     $('#query-text').on('input', checkQueryText);
 
-    $("#execute-button").click(history);
+    $("#execute-button").click(executeQuery);
 
-    function history() {
-        if ($("#query-text").val() != "") {
-            var text = $("#query-text").val();
-            // if (length < 10) {
-            $("#history-ol").prepend(`<li>${text}</li>`);
-            // }
-            var length = $("#history-ol").children().length;
-            if (length > 10) {
-                $('#history-ol li:last-child').remove();
-            }
+    function executeQuery() {
+        if ($("#query-text").val().trim() !== "") {
+            addToHistory();
+            checkQueryText();
+        } else {
+            alert("Empty SQL Query!");
+        }
+    }
+
+    function addToHistory() {
+        const text = $("#query-text").val();
+        $("#history-ol").prepend(`<li>${text}</li>`);
+        const lengthOL = $("#history-ol").children().length;
+        if (lengthOL > 10) {
+            $('#history-ol li:last-child').remove();
         }
     }
 
