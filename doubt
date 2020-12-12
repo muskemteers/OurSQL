@@ -8,3 +8,5 @@ $('#auto-select-all').click(function() {
         console.log("changed innertext");
         checkQueryText();
     });
+
+Bansi ke Bandua Bimansu
