@@ -61,7 +61,7 @@ $(document).ready(function() {
 
     function save_query() {
         var text = $("#query-text").val();
-        $("#save-ol").append(`<li>${text}</li>`);
+        $("#save-ol").prepend(`<li>${text}</li>`);
     }
 
     $("#auto-clear").click(function() {
