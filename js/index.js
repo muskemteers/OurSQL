@@ -1,5 +1,5 @@
-var dbase = "",
-    tabal = "";
+let currDB = "",
+    currTable = "";
 
 $(document).ready(function() {
     $('#accordion').accordion({
@@ -11,15 +11,15 @@ $(document).ready(function() {
     });
     $('.tables').click(function() {
         console.log($(this)[0].innerText);
-        tabal = $(this)[0].innerText;
+        currTable = $(this)[0].innerText;
     });
     $('.databases').click(function() {
         console.log($(this)[0].innerText);
-        tabal = "";
+        currTable = "";
         if ($("#accordion").accordion('option', 'active') !== false)
-            dbase = $(this)[0].innerText;
+            currDB = $(this)[0].innerText;
         else
-            dbase = "";
+            currDB = "";
     });
 
     function checkQueryText() {
@@ -50,7 +50,7 @@ $(document).ready(function() {
     }
 
     function addToHistory() {
-        var text = $("#query-text").val();
+        const text = $("#query-text").val().trim();
         $("#history-ol").prepend(`<li>${text}</li>`);
         const lengthOL = $("#history-ol").children().length;
         if (lengthOL > 10) {
@@ -60,11 +60,11 @@ $(document).ready(function() {
     $("#auto-save").click(save_query);
 
     function save_query() {
-        if ($("#query-text").val().trim() == "") {
+        const queryText = $("#query-text").val().trim();
+        if (queryText == "") {
             alert("Empty SQL Query!");
         } else {
-            var text = $("#query-text").val();
-            $("#save-ol").prepend(`<li>${text}</li>`);
+            $("#save-ol").prepend(`<li>${queryText}</li>`);
         }
     }
 
@@ -75,15 +75,16 @@ $(document).ready(function() {
     $(".sub-auto-queries").click(validate_selection);
 
     function validate_selection() {
-        if (dbase == "" && tabal == "") {
-            $("#query-error").text("Response: PLEASE SELECT A DATABASE AND A TABLE");
-            $("#query-error").css('color', 'red');
-        } else if (tabal == "") {
-            $("#query-error").text("Response: PLEASE SELECT A TABLE");
-            $("#query-error").css('color', 'red');
+        const queryError = $("#query-error");
+        if (currDB == "" && currTable == "") {
+            queryError.text("Response: PLEASE SELECT A DATABASE AND A TABLE");
+            queryError.css('color', 'red');
+        } else if (currTable == "") {
+            queryError.text("Response: PLEASE SELECT A TABLE");
+            queryError.css('color', 'red');
         } else {
-            $("#query-error").text("Response: All good till now");
-            $("#query-error").css('color', 'green');
+            queryError.text("Response: All good till now");
+            queryError.css('color', 'green');
         }
     }
 
