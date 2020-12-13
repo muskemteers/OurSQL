@@ -1,3 +1,6 @@
+var dbase = "",
+    tabal = "";
+
 $(document).ready(function() {
     $('#accordion').accordion({
         collapsible: true,
@@ -8,9 +11,15 @@ $(document).ready(function() {
     });
     $('.tables').click(function() {
         console.log($(this)[0].innerText);
+        tabal = $(this)[0].innerText;
     });
     $('.databases').click(function() {
         console.log($(this)[0].innerText);
+        tabal = "";
+        if ($("#accordion").accordion('option', 'active') !== false)
+            dbase = $(this)[0].innerText;
+        else
+            dbase = "";
     });
 
     function checkQueryText() {
@@ -41,16 +50,41 @@ $(document).ready(function() {
     }
 
     function addToHistory() {
-        const text = $("#query-text").val();
+        var text = $("#query-text").val();
         $("#history-ol").prepend(`<li>${text}</li>`);
         const lengthOL = $("#history-ol").children().length;
         if (lengthOL > 10) {
             $('#history-ol li:last-child').remove();
         }
     }
+    $("#auto-save").click(save_query);
+
+    function save_query() {
+        if ($("#query-text").val().trim() == "") {
+            alert("Empty SQL Query!");
+        } else {
+            var text = $("#query-text").val();
+            $("#save-ol").prepend(`<li>${text}</li>`);
+        }
+    }
 
     $("#auto-clear").click(function() {
         $("#query-text").val("");
     });
+
+    $(".sub-auto-queries").click(validate_selection);
+
+    function validate_selection() {
+        if (dbase == "" && tabal == "") {
+            $("#query-error").text("Response: PLEASE SELECT A DATABASE AND A TABLE");
+            $("#query-error").css('color', 'red');
+        } else if (tabal == "") {
+            $("#query-error").text("Response: PLEASE SELECT A TABLE");
+            $("#query-error").css('color', 'red');
+        } else {
+            $("#query-error").text("Response: All good till now");
+            $("#query-error").css('color', 'green');
+        }
+    }
 
 });
