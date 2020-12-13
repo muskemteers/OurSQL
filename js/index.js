@@ -60,8 +60,12 @@ $(document).ready(function() {
     $("#auto-save").click(save_query);
 
     function save_query() {
-        var text = $("#query-text").val();
-        $("#save-ol").prepend(`<li>${text}</li>`);
+        if ($("#query-text").val().trim() == "") {
+            alert("Empty SQL Query!");
+        } else {
+            var text = $("#query-text").val();
+            $("#save-ol").prepend(`<li>${text}</li>`);
+        }
     }
 
     $("#auto-clear").click(function() {
