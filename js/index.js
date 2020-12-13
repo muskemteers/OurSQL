@@ -1,3 +1,6 @@
+var dbase = "",
+    tabal = "";
+
 $(document).ready(function() {
     $('#accordion').accordion({
         collapsible: true,
@@ -8,9 +11,11 @@ $(document).ready(function() {
     });
     $('.tables').click(function() {
         console.log($(this)[0].innerText);
+        tabal = $(this)[0].innerText;
     });
     $('.databases').click(function() {
         console.log($(this)[0].innerText);
+        dbase = $(this)[0].innerText;
     });
 
     function checkQueryText() {
@@ -51,6 +56,16 @@ $(document).ready(function() {
 
     $("#auto-clear").click(function() {
         $("#query-text").val("");
+    });
+
+    $("#auto-select-all").click(function() {
+        if (dbase == "" && tabal == "") {
+            $("#query-text").text("PLEASE SELECT A DATABASE AND A TABLE");
+            $("#query-text").css('color', 'red');
+        } else if (tabal == "") {
+            $("#query-text").text("PLEASE SELECT A TABLE");
+            $("#query-text").css('color', 'red');
+        }
     });
 
 });
