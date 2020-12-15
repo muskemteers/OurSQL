@@ -90,7 +90,7 @@ $(document).ready(function() {
 
 });
 
-jsonStr = `{"databases":["db1","db2"],"tables":[["table11","table12"],["table21","table22","table23"]],"table-details":{"db1+table11":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db1+table12":[{"colName":"col121","colType":"int"},{"colName":"col122","colType":"varchar(50)"},{"colName":"col123","colType":"int"}],"db2+table21":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db2+table22":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}],"db2+table23":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}]},"table-data":{"db1+table11":[[1,"Emp1",38],[2,"Emp2",40],[1,"Emp3",45]],"db1+table12":[[121,"Entry 121",12],[122,"Entry 122",13],[123,"Entry 123",14]],"db2+table21":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table22":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table23":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]]}}`;
+jsonStr = `{"databases":["db1","db2"],"tables":[["table11","table12"],["table21","table22","table23"]],"table-details":{"db1+table11":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db1+table12":[{"colName":"col121","colType":"int"},{"colName":"col122","colType":"varchar(50)"},{"colName":"col123","colType":"int"}],"db2+table21":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db2+table22":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}],"db2+table23":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}]},"table-data":{"db1+table11":[[1,"Emp1",38],[2,"Emp1",38],[1,"Emp3",45]],"db1+table12":[[121,"Entry 121",12],[122,"Entry 122",13],[123,"Entry 123",14]],"db2+table21":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table22":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table23":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]]}}`;
 
 jsonObj = JSON.parse(jsonStr);
 
@@ -186,3 +186,56 @@ jsonObj = JSON.parse(jsonStr);
 // for (rows of tableData) {
 //     console.log(rows);
 // }
+
+// update any column entry
+// currDB = "db1";
+// currTable = "table11";
+// columnToChangeIndex = [2, 1];
+// newValuesToReplace = [40, "EmpN"];
+// checkCols = [2, 1];
+// checkVals = [38, "Emp1"];
+// tableDetails = jsonObj["table-data"][currDB + "+" + currTable];
+// //console.log(tableDetails);
+// tableDetails.forEach((tableRow, i) => {
+//     const nThRow = tableRow;
+//     //console.log(nThRow);
+//     const allTrue = checkCols.every((data, index) => {
+//         //console.log(nThRow[data] + ", " + checkVals[index]);
+//         return nThRow[data] === checkVals[index];
+//     });
+//     if (allTrue) {
+//         //console.log("All True");
+//         columnToChangeIndex.forEach((data, index) => {
+//             tableDetails[i][data] = newValuesToReplace[index];
+//         });
+//     } else {
+//         //console.log("Not compatible");
+//     }
+// });
+
+
+// delete any row 
+// currDB = "db1";
+// currTable = "table11";
+// checkCols = [2, 1];
+// checkVals = [38, "Emp1"];
+// rowsToRemove = [];
+// tableDetails = jsonObj["table-data"][currDB + "+" + currTable];
+// tableDetails.forEach((tableRow, rowIndex) => {
+//     console.log(tableRow);
+//     const nThRow = tableRow;
+//     const allTrue = checkCols.every((data, index) => {
+//         //console.log(nThRow[data] + ", " + checkVals[index]);
+//         return nThRow[data] === checkVals[index];
+//     });
+//     if (allTrue) {
+//         rowsToRemove.push(rowIndex);
+//     } else {
+
+//     }
+// });
+// rowsToRemove.sort();
+// rowsToRemove.reverse();
+// console.log(rowsToRemove);
+// rowsToRemove.forEach((data, index) => tableDetails.splice(index, 1));
+// console.log(jsonObj);
