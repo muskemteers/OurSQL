@@ -75,7 +75,7 @@ $(document).ready(function() {
     $(".sub-auto-queries").click(validate_selection);
     $("#auto-select-all").click(function() {
         const queryText = $("#query-text");
-        if (validate_selection) {
+        if (validate_selection()) {
             queryText.text("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
             queryText.css('color', 'green');
         }
