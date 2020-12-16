@@ -73,18 +73,28 @@ $(document).ready(function() {
     });
 
     $(".sub-auto-queries").click(validate_selection);
+    $("#auto-select-all").click(function() {
+        const queryText = $("#query-text");
+        if (validate_selection) {
+            queryText.text("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
+            queryText.css('color', 'green');
+        }
+    });
 
     function validate_selection() {
         const queryError = $("#query-error");
         if (currDB == "" && currTable == "") {
             queryError.text("Response: PLEASE SELECT A DATABASE AND A TABLE");
             queryError.css('color', 'red');
+            return false;
         } else if (currTable == "") {
             queryError.text("Response: PLEASE SELECT A TABLE");
             queryError.css('color', 'red');
+            return false;
         } else {
             queryError.text("Response: All good till now");
             queryError.css('color', 'green');
+            return true;
         }
     }
 
