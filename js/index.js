@@ -196,3 +196,56 @@ jsonObj = JSON.parse(jsonStr);
 // for (rows of tableData) {
 //     console.log(rows);
 // }
+
+// update any column entry
+// currDB = "db1";
+// currTable = "table11";
+// columnToChangeIndex = [2, 1];
+// newValuesToReplace = [40, "EmpN"];
+// checkCols = [2, 1];
+// checkVals = [38, "Emp1"];
+// tableDetails = jsonObj["table-data"][currDB + "+" + currTable];
+// //console.log(tableDetails);
+// tableDetails.forEach((tableRow, i) => {
+//     const nThRow = tableRow;
+//     //console.log(nThRow);
+//     const allTrue = checkCols.every((data, index) => {
+//         //console.log(nThRow[data] + ", " + checkVals[index]);
+//         return nThRow[data] === checkVals[index];
+//     });
+//     if (allTrue) {
+//         //console.log("All True");
+//         columnToChangeIndex.forEach((data, index) => {
+//             tableDetails[i][data] = newValuesToReplace[index];
+//         });
+//     } else {
+//         //console.log("Not compatible");
+//     }
+// });
+
+
+// delete any row 
+// currDB = "db1";
+// currTable = "table11";
+// checkCols = [2, 1];
+// checkVals = [38, "Emp1"];
+// rowsToRemove = [];
+// tableDetails = jsonObj["table-data"][currDB + "+" + currTable];
+// tableDetails.forEach((tableRow, rowIndex) => {
+//     console.log(tableRow);
+//     const nThRow = tableRow;
+//     const allTrue = checkCols.every((data, index) => {
+//         //console.log(nThRow[data] + ", " + checkVals[index]);
+//         return nThRow[data] === checkVals[index];
+//     });
+//     if (allTrue) {
+//         rowsToRemove.push(rowIndex);
+//     } else {
+
+//     }
+// });
+// rowsToRemove.sort();
+// rowsToRemove.reverse();
+// console.log(rowsToRemove);
+// rowsToRemove.forEach((data, index) => tableDetails.splice(index, 1));
+// console.log(jsonObj);
