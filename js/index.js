@@ -83,7 +83,7 @@ $(document).ready(function() {
     $("#auto-select-all").click(function() {
         const queryText = $("#query-text");
         if (validate_selection()) {
-            queryText.text("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
+            queryText.val("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
             queryText.css('color', 'green');
         }
     });
