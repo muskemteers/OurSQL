@@ -16,9 +16,10 @@ $(document).ready(function() {
     $('.databases').click(function() {
         console.log($(this)[0].innerText);
         currTable = "";
-        if ($("#accordion").accordion('option', 'active') !== false)
+        if ($("#accordion").accordion("option", "active") !== false) {
             currDB = $(this)[0].innerText;
-        else {
+            renderTablesOfDB(retrieveTablesFromDB(currDB), currDB);
+        } else {
             currDB = "";
             $(prevp).removeClass('border');
         }
@@ -114,18 +115,23 @@ $(document).ready(function() {
 
 });
 
-jsonStr = `{"databases":["db1","db2"],
-"tables":[["table11","table12"],["table21","table22","table23"]],
-"table-details":{"db1+table11":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],
-"db1+table12":[{"colName":"col121","colType":"int"},{"colName":"col122","colType":"varchar(50)"},{"colName":"col123","colType":"int"}],
-"db2+table21":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],
-"db2+table22":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}],
-"db2+table23":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}]},
-"table-data":{"db1+table11":[[1,"Emp1",38],[2,"Emp2",40],[1,"Emp3",45]],
-"db1+table12":[[121,"Entry 121",12],[122,"Entry 122",13],[123,"Entry 123",14]],
-"db2+table21":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],
-"db2+table22":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],
-"db2+table23":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]]}}`;
+function renderTablesOfDB(tables, currDB) {
+    let tableDetails = "";
+    tableDetails += `<table class="highlight"><thead><tr><th>Table Name</th><th>Drop Table</th><th>Delete All Entries</th></tr></thead>`;
+    for (var i = 0; i < tables.length; i++) {
+        tableDetails += ('<tr><td>' + tables[i] + '</td><td><button>Drop</button></td><td><button>Delete Entries</button></td></tr>');
+    }
+    tableDetails += '</table>';
+    console.log(tableDetails);
+    $("#result-response").html(tableDetails);
+}
+
+function retrieveTablesFromDB(dbName) {
+    currDbIndex = jsonObj.databases.findIndex(obj => obj == dbName);
+    return jsonObj.tables[currDbIndex];
+}
+
+jsonStr = `{"databases":["db1","db2"],"tables":[["table11","table12"],["table21","table22","table23"]],"table-details":{"db1+table11":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db1+table12":[{"colName":"col121","colType":"int"},{"colName":"col122","colType":"varchar(50)"},{"colName":"col123","colType":"int"}],"db2+table21":[{"colName":"index","colType":"int"},{"colName":"empName","colType":"varchar(50)"},{"colName":"workingHours","colType":"int"}],"db2+table22":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}],"db2+table23":[{"colName":"col21","colType":"int"},{"colName":"col22","colType":"varchar(50)"},{"colName":"col23","colType":"int"}]},"table-data":{"db1+table11":[[1,"Emp1",38],[2,"Emp2",40],[1,"Emp3",45]],"db1+table12":[[121,"Entry 121",12],[122,"Entry 122",13],[123,"Entry 123",14]],"db2+table21":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table22":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]],"db2+table23":[[211,"Entry 21",21],[221,"Entry 22",22],[231,"Entry 23",23]]}}`;
 
 jsonObj = JSON.parse(jsonStr);
 
