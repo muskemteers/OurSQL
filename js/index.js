@@ -18,7 +18,7 @@ $(document).ready(function() {
         currTable = "";
         if ($("#accordion").accordion("option", "active") !== false) {
             currDB = $(this)[0].innerText;
-            showTablesOfDbase(getTablesFromDB(currDB), currDB);
+            renderTablesOfDB(retrieveTablesFromDB(currDB), currDB);
         } else
             currDB = "";
     });
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
 });
 
-function showTablesOfDbase(tables, currDB) {
+function renderTablesOfDB(tables, currDB) {
     let tableDetails = "";
     tableDetails += `<table class="highlight"><thead><tr><th>Table Name</th><th>Drop Table</th><th>Delete All Entries</th></tr></thead>`;
     for (var i = 0; i < tables.length; i++) {
@@ -112,7 +112,7 @@ function showTablesOfDbase(tables, currDB) {
     $("#result-response").html(tableDetails);
 }
 
-function getTablesFromDB(dbName) {
+function retrieveTablesFromDB(dbName) {
     currDbIndex = jsonObj.databases.findIndex(obj => obj == dbName);
     return jsonObj.tables[currDbIndex];
 }
