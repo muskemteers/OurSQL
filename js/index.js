@@ -110,7 +110,7 @@ $(document).ready(function() {
         //$(this).css({ "border": "red solid 2px" });
         $(this).addClass('border');
         prevp = $(this);
-        var tables = displaytables(currDB, currTable);
+        var tables = displayTableContent(currDB, currTable);
     });
 
 });
@@ -135,7 +135,7 @@ jsonStr = `{"databases":["db1","db2"],"tables":[["table11","table12"],["table21"
 
 jsonObj = JSON.parse(jsonStr);
 
-function displaytables(dbName, tableName) {
+function displayTableContent(dbName, tableName) {
     currDB = dbName;
     currTable = tableName;
     tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
@@ -146,16 +146,13 @@ function displaytables(dbName, tableName) {
         innerContent += `<th>${columnDetails.colName}</th>`;
     }
     innerContent += `</tr></thead><tbody>`;
-    console.log("");
     tableData = jsonObj["table-data"][currDB + "+" + currTable];
     for (row of tableData) {
         innerContent += `<tr>`;
         const nThRow = row;
         for (items of nThRow) {
             innerContent += `<td>${items}</td>`;
-            console.log(items);
         }
-        console.log("Row End");
         innerContent += `</tr>`
     }
     innerContent += `</tbody></table>`;
