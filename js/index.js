@@ -118,6 +118,21 @@ function confirmClear() {
     return window.confirm("Are you sure you want to clear the current query?");
 }
 
+function insertionQuery() {
+    let innerContent = "";
+    innerContent += `INSERT INTO ${currTable}\nVALUES\n(`;
+    tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
+    var abc = [];
+    for (const columnDetails of tableDetails) {
+        abc.push(`\'${columnDetails.colName}\'`);
+    }
+    let columnName = abc.join(" , ");
+    innerContent += `${columnName} );`;
+    queryText = $("#query-text");
+    queryText.val(innerContent);
+    queryText.css('color', 'green');
+}
+
 let currDB = "",
     currTable = "",
     prevp;
@@ -175,6 +190,20 @@ $(document).ready(function() {
         $(this).addClass('border');
         prevp = $(this);
         displayTableContent(currDB, currTable);
+    });
+
+    $("#auto-insert").click(function() {
+        if (validateDTSelection()) {
+            const queryText = $("#query-text").val().trim();
+            if (queryText != "") {
+                if (confirmClear()) {
+                    $("#query-text").val("");
+                    insertionQuery();
+                }
+            } else {
+                insertionQuery();
+            }
+        }
     });
 
 });
