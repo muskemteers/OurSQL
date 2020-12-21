@@ -133,6 +133,21 @@ function insertionQuery() {
     queryText.css('color', 'green');
 }
 
+function selectionQuery() {
+    let innerContent = "";
+    innerContent += `SELECT `
+    tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
+    var abc = [];
+    for (const columnDetails of tableDetails) {
+        abc.push(`${columnDetails.colName}`);
+    }
+    let columnName = abc.join(" , ");
+    innerContent += `${columnName}\nFROM ${currTable};`;
+    queryText = $("#query-text");
+    queryText.val(innerContent);
+    queryText.css('color', 'green');
+}
+
 let currDB = "",
     currTable = "",
     prevp;
@@ -206,6 +221,19 @@ $(document).ready(function() {
         }
     });
 
+    $("#auto-select").click(function() {
+        if (validateDTSelection()) {
+            const queryText = $("#query-text").val().trim();
+            if (queryText != "") {
+                if (confirmClear()) {
+                    $("#query-text").val("");
+                    selectionQuery();
+                }
+            } else {
+                selectionQuery();
+            }
+        }
+    });
 });
 
 
