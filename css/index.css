@@ -76,11 +76,6 @@ body {
     width: 90%;
 }
 
-#query-error {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .flex-auto-queries {
     display: flex;
 }
