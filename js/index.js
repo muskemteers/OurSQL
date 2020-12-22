@@ -28,7 +28,7 @@ function checkQueryText() {
     if (reg.test(inpQuery.value)) {
         inpQuery.style.color = "lightgreen";
         document.getElementById("query-error").innerText = "Response: Looks Good";
-        document.getElementById("query-error").style.color = "green";
+        document.getElementById("query-error").style.color = "lightgreen";
     } else {
         inpQuery.style.color = "red";
         document.getElementById("query-error").innerText = "Response: You are writing a shitty query";
@@ -75,7 +75,7 @@ function validateDTSelection() {
         return false;
     } else {
         queryError.text("Response: All good till now");
-        queryError.css('color', 'green');
+        queryError.css('color', 'lightgreen');
         return true;
     }
 }
@@ -119,7 +119,7 @@ function confirmClear() {
 }
 
 function insertionQuery() {
-    let innerContent = "";
+    let innerContent = "USE " + currDB + ";\n";
     innerContent += `INSERT INTO ${currTable}\nVALUES\n(`;
     tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
     var abc = [];
@@ -130,11 +130,11 @@ function insertionQuery() {
     innerContent += `${columnName} );`;
     queryText = $("#query-text");
     queryText.val(innerContent);
-    queryText.css('color', 'green');
+    queryText.css('color', 'lightgreen');
 }
 
 function selectionQuery() {
-    let innerContent = "";
+    let innerContent = "USE " + currDB + ";\n";
     innerContent += `SELECT `;
     tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
     var abc = [];
@@ -145,7 +145,7 @@ function selectionQuery() {
     innerContent += `${columnName}\nFROM ${currTable};`;
     queryText = $("#query-text");
     queryText.val(innerContent);
-    queryText.css('color', 'green');
+    queryText.css('color', 'lightgreen');
 }
 
 function deleteQuery() {
@@ -158,7 +158,7 @@ function deleteQuery() {
             }
         } else {
             const tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
-            let query = "DELETE " + currTable;
+            let query = "USE " + currDB + ";\nDELETE " + currTable;
             query += " WHERE ";
             for (let i = 0; i < tableDetails.length; i++) {
                 if (i < tableDetails.length - 1)
@@ -168,7 +168,7 @@ function deleteQuery() {
             }
             query += ";";
             queryText.val(query);
-            queryText.css('color', 'green');
+            queryText.css('color', 'lightgreen');
         }
     }
 }
@@ -179,12 +179,12 @@ function updateQuery() {
         if (queryText.val().trim() !== "") {
             if (confirmClear()) {
                 queryText.val("");
-                deleteQuery();
+                updateQuery();
             }
         } else {
             queryText.val();
             const tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
-            let query = "UPDATE " + currTable + " SET ";
+            let query = "USE " + currDB + ";\nUPDATE " + currTable + " SET ";
             for (let i = 0; i < tableDetails.length; i++) {
                 if (i < tableDetails.length - 1)
                     query += `${tableDetails[i].colName}` + " = \"\" , ";
@@ -200,7 +200,7 @@ function updateQuery() {
             }
             query += ";";
             queryText.val(query);
-            queryText.css('color', 'green');
+            queryText.css('color', 'lightgreen');
         }
     }
 }
@@ -252,8 +252,16 @@ $(document).ready(function() {
     $("#auto-select-all").click(function() {
         const queryText = $("#query-text");
         if (validateDTSelection()) {
-            queryText.val("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
-            queryText.css('color', 'green');
+            if (queryText.val().trim() !== "") {
+                if (confirmClear()) {
+                    queryText.val("");
+                    queryText.val("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
+                    queryText.css('color', 'lightgreen');
+                }
+            } else {
+                queryText.val("USE " + currDB + ";\nSELECT * FROM " + currTable + ";");
+                queryText.css('color', 'lightgreen');
+            }
         }
     });
 
