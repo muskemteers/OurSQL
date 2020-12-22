@@ -84,7 +84,7 @@ function renderTablesOfDB(tables) {
     let tableDetails = "";
     tableDetails += `<table class="highlight"><thead><tr><th>Table Name</th><th>Drop Table</th><th>Delete All Entries</th></tr></thead><tbody>`;
     for (table of tables) {
-        tableDetails += `<tr><td>${table}</td><td><button class="db-btns">Drop</button></td><td><button class="db-btns">Delete Entries</button></td></tr>`;
+        tableDetails += ('<tr><td>' + table + '</td><td><i class="material-icons small" style="vertical-align:middle">delete_forever</i>Drop</td><td><i class="material-icons small" style="vertical-align:middle">delete_sweep</i>Delete Entries</td></tr>');
     }
     tableDetails += '</tbody></table>';
     $("#result-response").html(tableDetails);
@@ -147,6 +147,64 @@ function selectionQuery() {
     queryText.val(innerContent);
     queryText.css('color', 'green');
 }
+
+function deleteQuery() {
+    if (validateDTSelection()) {
+        const queryText = $("#query-text");
+        if (queryText.val().trim() !== "") {
+            if (confirmClear()) {
+                queryText.val("");
+                deleteQuery();
+            }
+        } else {
+            const tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
+            let query = "DELETE " + currTable;
+            query += " WHERE ";
+            for (let i = 0; i < tableDetails.length; i++) {
+                if (i < tableDetails.length - 1)
+                    query += `${tableDetails[i].colName}` + " = \"\" AND ";
+                else
+                    query += `${tableDetails[i].colName}` + " = \"\"";
+            }
+            query += ";";
+            queryText.val(query);
+            queryText.css('color', 'green');
+        }
+    }
+}
+
+function updateQuery() {
+    if (validateDTSelection()) {
+        const queryText = $("#query-text");
+        if (queryText.val().trim() !== "") {
+            if (confirmClear()) {
+                queryText.val("");
+                deleteQuery();
+            }
+        } else {
+            queryText.val();
+            const tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
+            let query = "UPDATE " + currTable + " SET ";
+            for (let i = 0; i < tableDetails.length; i++) {
+                if (i < tableDetails.length - 1)
+                    query += `${tableDetails[i].colName}` + " = \"\" , ";
+                else
+                    query += `${tableDetails[i].colName}` + " = \"\"";
+            }
+            query += " WHERE ";
+            for (let i = 0; i < tableDetails.length; i++) {
+                if (i < tableDetails.length - 1)
+                    query += `${tableDetails[i].colName}` + " = \"\" AND ";
+                else
+                    query += `${tableDetails[i].colName}` + " = \"\"";
+            }
+            query += ";";
+            queryText.val(query);
+            queryText.css('color', 'green');
+        }
+    }
+}
+
 
 let currDB = "",
     currTable = "",
@@ -234,6 +292,10 @@ $(document).ready(function() {
             }
         }
     });
+
+    $("#auto-update").click(updateQuery);
+
+    $("#auto-delete").click(deleteQuery);
 });
 
 
