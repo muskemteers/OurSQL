@@ -135,7 +135,7 @@ function insertionQuery() {
 
 function selectionQuery() {
     let innerContent = "";
-    innerContent += `SELECT `
+    innerContent += `SELECT `;
     tableDetails = jsonObj["table-details"][currDB + "+" + currTable];
     var abc = [];
     for (const columnDetails of tableDetails) {
