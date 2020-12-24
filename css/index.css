@@ -66,6 +66,7 @@ body {
 }
 
 #query-text {
+    color: lightgreen;
     border: solid 2px #3399ff;
     font-size: medium;
     resize: none;
@@ -73,6 +74,10 @@ body {
     margin: 0px 5%;
     height: 120px;
     width: 90%;
+}
+
+#query-error {
+    color: lightgreen;
 }
 
 .flex-auto-queries {
