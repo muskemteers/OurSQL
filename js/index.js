@@ -21,19 +21,58 @@ function retrieveTablesFromDB(dbName) {
     return jsonObj.tables[currDbIndex];
 }
 
+function setError(responseText) {
+    $('#query-error').text(responseText);
+}
+
 function checkQueryText() {
-    //Do validation and print answer in result tab
-    const inpQuery = document.getElementById("query-text");
-    reg = /SELECT/i;
-    if (reg.test(inpQuery.value)) {
-        inpQuery.style.color = "lightgreen";
-        document.getElementById("query-error").innerText = "Response: Looks Good";
-        document.getElementById("query-error").style.color = "lightgreen";
+    let responseText = "";
+    let inpQuery = $("#query-text").val();
+    tempArray = inpQuery.split("\n");
+    inpQuery = tempArray.join(" ");
+    const dbSemiColon = inpQuery.indexOf(";");
+    useReg = /use/i;
+    if (useReg.test(inpQuery.slice(0, 3)) && dbSemiColon !== -1) {
+        dbName = inpQuery.slice(3, dbSemiColon).trim();
+        responseText += `Database Chosen: ${dbName}`;
+        setError(responseText);
+        operation = inpQuery.slice(dbSemiColon + 1).trim();
+        switch (true) {
+            case /select /i.test(operation.slice(0, 7)):
+                selectQueryHandler(operation, responseText);
+                break;
+            case /insert /i.test(operation.slice(0, 7)):
+                insertQueryHandler(operation, responseText);
+                break;
+            case /delete /i.test(operation.slice(0, 7)):
+                deleteQueryHandler(operation, responseText);
+                break;
+            case /update /i.test(operation.slice(0, 7)):
+                updateQueryHandler(operation, responseText);
+                break;
+            default:
+                responseText += "Query not matching any one of(SELECT/INSERT/UPDATE/DELETE)";
+                break;
+        }
     } else {
-        inpQuery.style.color = "red";
-        document.getElementById("query-error").innerText = "Response: You are writing a shitty query";
-        document.getElementById("query-error").style.color = "red";
+        $('#query-error').html(`Please choose a database eg. <span class="pink-text">USE dbName;</span>`);
     }
+}
+
+function selectQueryHandler(operation, responseText) {
+
+}
+
+function insertQueryHandler(operation, responseText) {
+
+}
+
+function updateQueryHandler(operation, responseText) {
+
+}
+
+function deleteQueryHandler(operation, responseText) {
+
 }
 
 function executeQuery() {
@@ -74,8 +113,6 @@ function validateDTSelection() {
         queryError.css('color', 'red');
         return false;
     } else {
-        queryError.text("Response: All good till now");
-        queryError.css('color', 'lightgreen');
         return true;
     }
 }
@@ -146,6 +183,7 @@ function selectionQuery() {
     queryText = $("#query-text");
     queryText.val(innerContent);
     queryText.css('color', 'lightgreen');
+    checkQueryText();
 }
 
 function deleteQuery() {
